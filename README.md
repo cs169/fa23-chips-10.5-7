@@ -8,7 +8,7 @@ political events in their area as well as aggregate, share and view news items i
 </div>
 
 <!-- TODO: Update these for your repo! -->
-[![Build Status](https://github.com/Sep26/fa23-chips-10.5-7/actions/workflows/specs.yml/badge.svg)](https://github.com/yourusername/yourrepository/actions/workflows/specs.yml)
+[![Build Status](https://github.com/Sep26/fa23-chips-10.5-7/actions/workflows/specs.yml/badge.svg)](https://github.com/Sep26/fa23-chips-10.5-7/actions/workflows/specs.yml)
 
 
 [![All Specs](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml/badge.svg)](https://github.com/saasbook/hw-agile-iterations/actions/workflows/specs.yml)
