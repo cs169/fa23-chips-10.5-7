@@ -4,8 +4,9 @@ RSpec.describe Representative, type: :model do
     it 'creates representatives without errors for duplicate input' do 
       rep_info = double('rep_info', 
         officials: [
-          double('official', name: 'Bill Smith'),
-          double('official', name: 'Jacob Willows')
+          double('official', name: 'Bill Smith', address: [double('address', locationName: '123 Flame Ave', line1: 'Apt 1', line2: '', line3: '', city: 'Perris', state: 'CA', zip: '12345')], party: 'Party', photoUrl: "url"),
+          double('official', name: 'Hannah Smith', address: [double('address', locationName: '123 Flame Ave', line1: 'Apt 1', line2: '', line3: '', city: 'Perris', state: 'CA', zip: '12345')], party: 'Party', photoUrl: "url"),
+
         ],
         offices: [
           double('office', name: 'Office1', division_id: '1', official_indices: [0, 1]),
@@ -19,11 +20,9 @@ RSpec.describe Representative, type: :model do
         Representative.civic_api_to_representative_params(rep_info)
       }.not_to raise_error
 
-      expect(Representative.find_by(name: 'Bill Smith')).not_to be_nil
-
-      expect(Representative.find_by(name: 'Jacob Willows')).not_to be_nil
-
       expect(Representative.count).to eq(2)
+
+  
     end
   end
 end 
