@@ -571,7 +571,10 @@ module SeedData
     def self.representatives
         [
             {
-                name:       'Gavin Newsom',
+              name: 'Gavin Newsom',
+              address: 'Governor\'s Office, 123 Main St, Suite 100, Building A, San Francisco, California, 94101',
+              party: 'Democratic Party',
+              photo_url: 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/399px-Gavin_Newsom_official_photo.jpg',
                 news_items: [
                     {
                         title:       'Newsom Orders Second Shutdown of Restaurants and Indoor Businesses amid COVID-19',
@@ -586,7 +589,10 @@ module SeedData
                 ]
             },
             {
-                name:       'Alexander Ocasio Cortez',
+              name: 'Alexander Ocasio Cortez',
+              address: 'Congress Office, 456 Elm St, New York, New York, 10001',
+              party: 'Democratic Party',
+              photo_url: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Alexandria_Ocasio-Cortez_Official_Portrait.jpg',
                 news_items: [
                     {
                         title:       'What AOC and other House Dems want to do about Climate Change',

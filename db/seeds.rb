@@ -26,7 +26,12 @@ SeedData.states.each do |state|
 end
 
 SeedData.representatives.each do |rep|
-    rep_model = Representative.create(name: rep[:name])
+    rep_model = Representative.create(
+        name: rep[:name],
+        address: rep[:address],  # Include address field
+        party: rep[:party],      # Include party field
+        photo_url: rep[:photo_url]  # Include photo_url field
+      )
     rep[:news_items].each do |news_item|
         NewsItem.create(
             representative: rep_model,
