@@ -57,3 +57,4 @@ class MyNewsItemsController < SessionController
     params.require(:news_item).permit(:news, :title, :description, :link, :representative_id)
   end
 end
+
