@@ -23,23 +23,30 @@ class Representative < ApplicationRecord
     end
     reps
   end
-end
 
-def self.create_representative(official, ocdid_temp, title_temp, address_info)
-  Representative.create!({
-                           name:      official.name,
-                           ocdid:     ocdid_temp,
-                           title:     title_temp,
-                           address:   {
-                             location_name: address_info.locationName,
-                             line1:         address_info.line1,
-                             line2:         address_info.line2,
-                             line3:         address_info.line3,
-                             city:          address_info.city,
-                             state:         address_info.state,
-                             zip:           address_info.zip
-                           },
-                           party:     official.party,
-                           photo_url: official.photoUrl
-                         })
+  def self.create_representative(official, ocdid_temp, title_temp, address_info)
+    existing_representative = Representative.find_by(name: official.name, ocdid: ocdid_temp, title: title_temp)
+    if existing_representative
+      Rails.logger.debug 'Found existing representative'
+      return existing_representative
+    end
+
+    Rails.logger.debug 'Creating new representative'
+    Representative.create!({
+                             name:      official.name,
+                             ocdid:     ocdid_temp,
+                             title:     title_temp,
+                             address:   {
+                               location_name: address_info.locationName,
+                               line1:         address_info.line1,
+                               line2:         address_info.line2,
+                               line3:         address_info.line3,
+                               city:          address_info.city,
+                               state:         address_info.state,
+                               zip:           address_info.zip
+                             },
+                             party:     official.party,
+                             photo_url: official.photoUrl
+                           })
+  end
 end
