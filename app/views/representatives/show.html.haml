@@ -1,9 +1,10 @@
 .container.mt-5
-  .row.justify-content-center
-    .col-md-8
-      %h1.mb-3= @representative.name
-      %h2.mb-3= @representative.title
-      %p.mb-3= "Party: #{@representative.party}"
-      %p.mb-4= "Address: #{@representative.address}"
-      .text-center.mb-4
-        = image_tag @representative.photo_url, alt: @representative.name, class: "img-fluid rounded"
+    .row.justify-content-center
+        .col-md-8
+            %h1.mb-3= @representative.name
+            %h2.mb-3= @representative.title
+            %p.mb-3 Party: #{@representative.party}
+            %p.mb-4 Address: #{@representative.address}
+            .text-center.mb-4
+                = image_tag @representative.photo_url, alt: @representative.name, class: 'img-fluid rounded'
+
