@@ -1,5 +1,6 @@
 require 'rails_helper'
-RSpec.describe Representative, type: :model do
+
+describe Representative, type: :model do
   describe '.civic_api_to_representative_params' do 
     it 'creates representatives without errors for duplicate input' do 
       rep_info = double('rep_info', 
