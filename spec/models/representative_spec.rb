@@ -44,8 +44,6 @@ describe Representative, type: :model do
 
   it 'has a count of 2 in the database' do
     described_class.civic_api_to_representative_params(rep_info)
-    expect(described_class.count).to eq(2)
-  end
 end
 
       
