@@ -1,32 +1,49 @@
+# frozen_string_literal: true
+
+require 'ostruct'
 require 'rails_helper'
 
 describe Representative, type: :model do
-  describe '.civic_api_to_representative_params' do 
-    it 'creates representatives without errors for duplicate input' do 
-      rep_info = double('rep_info', 
-        officials: [
-          double('official', name: 'Bill Smith'),
-          double('official', name: 'Jacob Willows')
-        ],
-        offices: [
-          double('office', name: 'Office1', division_id: '1', official_indices: [0, 1]),
-        ]
-      )
-
-      #create representative with same name to check if it errors or not (it shouldn't)
-      Representative.create!(name: 'Bill Smith', ocdid: '1', title: 'Office1')
-
-      expect {
-        Representative.civic_api_to_representative_params(rep_info)
-      }.not_to raise_error
-
-      expect(Representative.find_by(name: 'Bill Smith')).not_to be_nil
-
-      expect(Representative.find_by(name: 'Jacob Willows')).not_to be_nil
-
-      expect(Representative.count).to eq(2)
-    end
+  let(:rep_info) do
+    OpenStruct.new(
+      officials: [
+        OpenStruct.new(name:    'Bill Smith',
+                       address: [OpenStruct.new(locationName: 'Location 1', line1: 'Address 1',
+                                                city: 'City 1', state: 'State 1',
+                                                zip: '12345')]),
+        OpenStruct.new(name:    'Jacob Willows',
+                       address: [OpenStruct.new(locationName: 'Location 2', line1: 'Address 2',
+                                                city: 'City 2', state: 'State 2',
+                                                zip: '67890')])
+      ],
+      offices:   [
+        OpenStruct.new(name: 'Office1', division_id: '1', official_indices: [0, 1])
+      ]
+    )
   end
-end 
+
+  before do
+    described_class.create!(name: 'Bill Smith', ocdid: '1', title: 'Office1')
+  end
+
+  it 'creates representatives without errors for duplicate input' do
+    expect do
+      described_class.civic_api_to_representative_params(rep_info)
+    end.not_to raise_error
+  end
+
+  it 'finds Bill Smith in the database' do
+    described_class.civic_api_to_representative_params(rep_info)
+    expect(described_class.find_by(name: 'Bill Smith')).not_to be_nil
+  end
+
+  it 'finds Jacob Willows in the database' do
+    described_class.civic_api_to_representative_params(rep_info)
+    expect(described_class.find_by(name: 'Jacob Willows')).not_to be_nil
+  end
+
+  it 'has a count of 2 in the database' do
+    described_class.civic_api_to_representative_params(rep_info)
+end
 
       
