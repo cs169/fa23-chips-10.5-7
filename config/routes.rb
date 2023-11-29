@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
     # Routes for Representatives
     resources :representatives, only: [:index]
+    resources :representatives, only: [:show]
     resources :representatives do
         resources :news_items, only: %i[index show]
         get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',
