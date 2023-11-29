@@ -5,20 +5,20 @@ require 'rails_helper'
 RSpec.describe 'News Items Page', type: :feature do
   let(:representative) do
     Representative.create!(
-      name: 'Bowen Fan',
-      title: 'Representative',
-      party: 'Democrat',
-      address: '2546 Warring St, Berkeley, CA, 92081',
+      name:      'Bowen Fan',
+      title:     'Representative',
+      party:     'Democrat',
+      address:   '2546 Warring St, Berkeley, CA, 92081',
       photo_url: 'https://t4.ftcdn.net/jpg/01/43/42/83/360_F_143428338_gcxw3Jcd0tJpkvvb53pfEztwtU9sxsgT.jpg'
     )
   end
 
   let(:news_item) do
     NewsItem.create!(
-      title: 'Sample News',
-      description: 'This is a sample news content.',
+      title:          'Sample News',
+      description:    'This is a sample news content.',
       representative: representative,
-      link: 'www.google.com'
+      link:           'www.google.com'
     )
   end
 
@@ -38,5 +38,4 @@ RSpec.describe 'News Items Page', type: :feature do
 
     expect(page).to have_link('Bowen Fan', href: representative_path(representative))
   end
-
 end
