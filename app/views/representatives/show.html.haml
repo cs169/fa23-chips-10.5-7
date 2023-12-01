@@ -5,6 +5,13 @@
             %h2.mb-3= @representative.title
             %p.mb-3 Party: #{@representative.party}
             %p.mb-4 Address: #{@representative.address}
-            .text-center.mb-4
-                = image_tag @representative.photo_url, alt: @representative.name, class: 'img-fluid rounded'
+            - if @representative.photo_url.present?
+                .text-center.mb-4
+                    = image_tag @representative.photo_url, alt: @representative.name, class: 'img-fluid rounded'
+            - else
+                .text-center.mb-4
+                    %p Image not available
+
+
+
 
