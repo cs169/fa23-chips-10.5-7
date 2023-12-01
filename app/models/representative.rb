@@ -17,7 +17,7 @@ class Representative < ApplicationRecord
         end
       end
 
-      address_info = official.address.first
+      address_info = official.address
       rep = create_representative(official, ocdid_temp, title_temp, address_info)
       reps.push(rep)
     end
@@ -30,19 +30,20 @@ class Representative < ApplicationRecord
       Rails.logger.debug 'Found existing representative'
       return existing_representative
     end
+    address_info = address_info.first if address_info.present?
     address_parts = [
-      address_info.locationName, address_info.line1, address_info.line2,
-      address_info.line3, address_info.city, address_info.state,
-      address_info.zip
+      address_info&.line1, address_info&.line2,
+      address_info&.line3, address_info&.city, address_info&.state,
+      address_info&.zip
     ]
     full_address = address_parts.reject(&:blank?).join(', ')
     Representative.create!({
-                             name:      official.name,
+                             name:      official.name.presence || 'N/A',
                              ocdid:     ocdid_temp,
                              title:     title_temp,
                              address:   full_address,
                              party:     official.party,
-                             photo_url: official.photoUrl
+                             photo_url: official.photo_url
                            })
   end
 end
