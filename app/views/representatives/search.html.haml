@@ -12,12 +12,18 @@
                     %tbody
                         - @representatives.each_with_index do |rep, _index|
                             %tr
-                                %td= rep.name
-                                %td= rep.title
+                                %td= rep.present? ? rep.name : 'N/A' # Display 'N/A' if name is empty
+                                %td= rep.present? ? rep.title : 'N/A' # Display 'N/A' if title is empty
                                 %td
-                                    = link_to representative_news_items_path(rep.id), class: 'btn btn-primary' do
-                                        %i.fas.fa-newspaper
-                                        News Articles
-                                    = link_to representative_path(rep), class: 'btn btn-secondary' do
-                                        %i.fas.fa-user
-                                        Profile
+                                    - if rep.present?
+                                        = link_to representative_news_items_path(rep.id), class: 'btn btn-primary' do
+                                            %i.fas.fa-newspaper
+                                            News Articles
+
+                                        = link_to representative_path(rep), class: 'btn btn-secondary' do
+                                            %i.fas.fa-user
+                                            Profile
+
+
+
+

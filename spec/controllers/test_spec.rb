@@ -33,7 +33,6 @@ RSpec.describe LoginController, type: :controller do
       end
     end
   end
-end
 
 RSpec.describe User, type: :model do
   describe '#name' do
@@ -122,7 +121,6 @@ RSpec.describe NewsItem, type: :model do
       expect(result).to be_nil
     end
   end
-end
 
 RSpec.describe ApplicationHelper, type: :helper do
   describe '.state_ids_by_name' do
@@ -238,8 +236,6 @@ RSpec.describe LoginController, type: :controller do
         expect(session[:current_user_id]).to eq(user.id)
         expect(response).to redirect_to(root_url)
       end
-    end
-  end
 
   describe 'GET #logout' do
     it 'logs out the user' do
@@ -358,7 +354,6 @@ RSpec.describe MyNewsItemsController, type: :controller do
     context 'with invalid parameters' do
       let(:invalid_params) { { title: '' } } # Assuming title can't be empty, adjust accordingly
     end
-  end
 
   describe '#update' do
     let(:news_item) { create(:news_item) }
