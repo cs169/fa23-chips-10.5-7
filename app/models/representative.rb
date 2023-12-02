@@ -30,13 +30,20 @@ class Representative < ApplicationRecord
       Rails.logger.debug 'Found existing representative'
       return existing_representative
     end
-    address_info = address_info.first if address_info.present?
-    address_parts = [
-      address_info&.line1, address_info&.line2,
-      address_info&.line3, address_info&.city, address_info&.state,
-      address_info&.zip
-    ]
-    full_address = address_parts.reject(&:blank?).join(', ')
+    address_parts = []
+    full_address = ''
+  
+    if address_info.present?
+      address_info = address_info.first if address_info.is_a?(Array)
+  
+      address_parts = [
+        address_info&.line1, address_info&.line2,
+        address_info&.line3, address_info&.city, address_info&.state,
+        address_info&.zip
+      ].compact
+  
+      full_address = address_parts.reject(&:blank?).join(', ')
+    end
     Representative.create!({
                              name:      official.name.presence || 'N/A',
                              ocdid:     ocdid_temp,
