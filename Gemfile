@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6' # Make sure that this matches .ruby-version file.
+ruby '2.7.4' # Make sure that this matches .ruby-version file.
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.8.1'
@@ -15,6 +15,15 @@ gem 'puma'
 gem 'webpacker', '5.1.1'
 # Use assets pipeline to serve topojson files.
 gem 'sprockets', '4.0.0'
+
+# Simulates how a real user would interact with map
+gem 'capybara', '3.38.0'
+
+# Runs a headless web browser so that Cucumber/Capybara can run JS and click on states/counties
+gem 'selenium-webdriver'
+
+# Stubs API requests to Google Civic API
+gem 'webmock'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

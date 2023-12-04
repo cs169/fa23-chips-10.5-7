@@ -20,7 +20,8 @@
                                             %i.fas.fa-newspaper
                                             News Articles
 
-                                        = link_to representative_path(rep), class: 'btn btn-secondary' do
+                                        = link_to representative_path(rep), class: 'btn btn-secondary',
+                                            id: "#{rep.name.downcase.gsub(/[\s.]+/, '')}_profile" do
                                             %i.fas.fa-user
                                             Profile
 
