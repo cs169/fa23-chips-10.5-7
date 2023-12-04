@@ -40,16 +40,31 @@ class LoginController < ApplicationController
     send(create_if_not_exists, user_info)
   end
 
+  #   def create_google_user(user_info)
+  #     User.create(
+  #       uid:        user_info['uid'],
+  #       provider:   User.providers[:google_oauth2],
+  #       first_name: user_info['info']['first_name'],
+  #       last_name:  user_info['info']['last_name'],
+  #       email:      user_info['info']['email']
+  #     )
+  #   end
+  # ########################check below#####################################
   def create_google_user(user_info)
+    first_name = user_info.dig('info', 'first_name') || 'Anon'
+    last_name = user_info.dig('info', 'last_name') || 'User'
+    email = user_info.dig('info', 'email') || 'anon@example.com'
+
     User.create(
       uid:        user_info['uid'],
       provider:   User.providers[:google_oauth2],
-      first_name: user_info['info']['first_name'],
-      last_name:  user_info['info']['last_name'],
-      email:      user_info['info']['email']
+      first_name: first_name,
+      last_name:  last_name,
+      email:      email
     )
   end
 
+  # ########################check above#####################################
   def create_github_user(user_info)
     # Unfortunately, Github doesn't provide first_name, last_name as separate entries.
     name = user_info['info']['name']
