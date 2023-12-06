@@ -71,3 +71,25 @@ end
 # The :transaction strategy is faster, but might give you threading problems.
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
+
+# Register a new Capybara driver :chrome_headless for Cucumber tests
+require 'capybara/cucumber'
+require 'selenium-webdriver'
+Capybara.register_driver :chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('no-sandbox')
+  options.add_argument('headless')
+  options.add_argument('disable-gpu')
+  options.add_argument('window-size=1400,1400')
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    acceptInsecureCerts: true
+  )
+  Capybara::Selenium::Driver.new(
+    app, browser: :chrome, options: options, desired_capabilities: capabilities
+  )
+end
+Capybara.javascript_driver = :chrome_headless
+
+# Disable external network connections for Cucumber tests, but allow localhost connections
+require 'webmock/cucumber'
+WebMock.disable_net_connect!(allow_localhost: true)

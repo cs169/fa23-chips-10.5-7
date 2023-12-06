@@ -45,4 +45,11 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Mute deprecation warning messages
+  config.after_initialize do
+    $VERBOSE = nil
+  end
+
+  Selenium::WebDriver.logger.level = :error
 end

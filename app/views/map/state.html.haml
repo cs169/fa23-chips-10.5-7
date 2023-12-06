@@ -12,9 +12,14 @@
             .card
                 .card-header#actionmap-counties-details-header
                     %h3.text-center
-                        %button.btn.btn-link.collapsed{ 'data-toggle': 'collapse',
-                        'data-target': '#actionmap-state-details-collapse', 'aria-expanded': false,
-                        'aria-controls': 'actionmap-state-details-collapse' } Counties in #{@state.name}
+                        %button{
+                        id: "counties_in_#{@state.name.downcase.tr(' ', '_')}",
+                          class: 'btn btn-link collapsed',
+                          'data-toggle': 'collapse',
+                          'data-target': '#actionmap-state-details-collapse',
+                          'aria-expanded': 'false',
+                          'aria-controls': 'actionmap-state-details-collapse'
+                        } Counties in #{@state.name}
                 .collapse#actionmap-state-details-collapse{ 'data-parent': '#actionmap-counties-details-header',
                 'aria-labelledby': '#actionmap-counties-details-header' }
                     .card-body
