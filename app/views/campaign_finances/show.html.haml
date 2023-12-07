@@ -1,0 +1,19 @@
+.container-fluid
+    .row
+        .col-md-8.offset-md-2
+            .table-responsive-md.pt-5
+                %table.table.table-striped.table-hover#events
+                    %caption Table of Representatives
+                    %thead.thead-dark
+                        %tr
+                            %th #
+                            %th Name
+                            %th Party
+                            %th State
+                    %tbody
+                        - @candidates.each_with_index do |candidate, index|
+                            %tr
+                                %td= index + 1  # Adding 1 since index starts from 0
+                                %td= candidate[:name]
+                                %td= candidate[:party]
+                                %td= candidate[:state]

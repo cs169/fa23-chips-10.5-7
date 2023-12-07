@@ -45,4 +45,8 @@ Rails.application.routes.draw do
             :as                                                    => :articles_my_news_item
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
+    
+    resources :campaign_finances, only: [:index] do
+        get :search, on: :collection
+    end
 end
