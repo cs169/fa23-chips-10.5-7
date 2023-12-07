@@ -25,7 +25,6 @@ class Representative < ApplicationRecord
   end
 
   def self.create_representative(official, ocdid_temp, title_temp, address_info)
-    address_parts = []
     full_address = ''
 
     if address_info.present?
