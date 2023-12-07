@@ -36,6 +36,13 @@ class MyNewsItemsController < SessionController
                 notice: 'News was successfully destroyed.'
   end
 
+  def articles
+    @representative_id = params[:news_item][:representative_id]
+    @representative_name = Representative.find(@representative_id).name
+    @issue = params[:news_item][:issue]
+    render 'articles' if @representative_id.present? && @issue.present?
+  end
+
   private
 
   def set_representative
