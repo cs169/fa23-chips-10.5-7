@@ -83,7 +83,7 @@ RSpec.describe NewsItem, type: :model do
   end
 
   let(:news_item) do
-    NewsItem.create!(
+    described_class.create!(
       title:          'Sample News',
       description:    'This is a sample news content.',
       representative: representative,
@@ -112,13 +112,13 @@ RSpec.describe NewsItem, type: :model do
   # end
 
   describe '.find_for' do
-      # it 'finds news items for a representative' do
-      #   result = NewsItem.find_for(representative)
-      #   expect(result.representative).to eq(representative)
-      # end
+    # it 'finds news items for a representative' do
+    #   result = NewsItem.find_for(representative)
+    #   expect(result.representative).to eq(representative)
+    # end
 
     it 'returns nil when no news items found for a representative' do
-      result = NewsItem.find_for(-1)
+      result = described_class.find_for(-1)
       expect(result).to be_nil
     end
   end
@@ -276,7 +276,6 @@ RSpec.describe SessionController, type: :controller do
       #   expect(assigns(:current_user)).to eq(user)
       # end
     end
-
   end
 end
 #
@@ -303,24 +302,18 @@ RSpec.describe MyEventsController, type: :controller do
   end
 
   describe 'GET #edit' do
-  
   end
-
-  
 
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) { { name: 'Updated Event' } }
-
     end
 
     context 'with invalid params' do
-    
     end
   end
 
   describe 'DELETE #destroy' do
-  
   end
 end
 
@@ -331,7 +324,6 @@ RSpec.describe AjaxController, type: :controller do
   let(:counties) { create_list(:county, 3, state: state) }
 
   describe 'GET #counties' do
-  
   end
 end
 
@@ -345,14 +337,11 @@ RSpec.describe MyNewsItemsController, type: :controller do
 
   describe '#edit' do
     let(:news_item) { create(:news_item) }
-
-
   end
 
   describe '#create' do
     context 'with valid parameters' do
       let(:valid_params) { attributes_for(:news_item) }
-
     end
 
     context 'with invalid parameters' do
@@ -365,7 +354,6 @@ RSpec.describe MyNewsItemsController, type: :controller do
     let(:new_title) { 'Updated Title' }
 
     context 'with valid parameters' do
-
     end
 
     context 'with invalid parameters' do

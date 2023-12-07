@@ -579,11 +579,13 @@ module SeedData
                     {
                         title:       'Newsom Orders Second Shutdown of Restaurants and Indoor Businesses amid COVID-19',
                         description: 'The new order affects 19 California counties with a surging number of coronavirus cases',
+                        issue:       'Unemployment',
                         link:        'https://people.com/human-interest/california-gov-gavin-newsom-orders-second-shutdown-of-restaurants-and-indoor-businesses-amid-covid-19/'
                     },
                     {
                         title:       "Newsom warns that young adults are not 'invincible' to Coronavirus",
                         description: 'Gov. Gavin Newsom said Monday that the surge in coronavirus cases hitting California was due in part to younger people who might believe “they are invincible” but nonetheless are becoming sick from COVID-19.',
+                        issue:       'Social Security and Medicare',
                         link:        'https://www.latimes.com/california/story/2020-07-06/young-adult-who-think-they-are-invincible-hit-hard-by-coronavirus-newsom-says'
                     }
                 ]
