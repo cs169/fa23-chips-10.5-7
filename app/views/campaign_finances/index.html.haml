@@ -1,0 +1,22 @@
+.row.mt-2
+  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+    %h1.text-center Campaign Finances
+
+  .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+    = form_tag search_campaign_finances_path, method: :get do
+      .form-group.row
+        .col-md-4
+          %label.col-form-label
+            Election cycle:
+        .col-md-6
+          = select_tag :cycle, options_for_select(@election_cycle_options), class: 'form-control'
+
+      .form-group.row
+        .col-md-4
+          %label.col-form-label
+            Category:
+        .col-md-6
+          = select_tag :category, options_for_select(@category_options), class: 'form-control'
+
+      .actions
+        = submit_tag 'Search', id: 'search_campaign_finances', class: 'btn btn-primary'
