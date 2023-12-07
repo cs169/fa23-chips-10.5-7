@@ -29,16 +29,11 @@ Rails.application.routes.draw do
     resources :representatives, only: [:show]
     resources :representatives do
         resources :news_items, only: %i[index show]
-        get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',
-            :as                                                    => :new_my_news_item
-        match '/representatives/:representative_id/my_news_item/new', to:  'my_news_items#create',
-                                                                      via: [:post]
-        get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#edit',
-            :as                                                    => :edit_my_news_item
-        match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#update',
-                                                                      via: %i[put patch]
-        match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#destroy',
-                                                                      via: [:delete]
+        get '/my_news_item/new' => 'my_news_items#new', :as => :new_my_news_item
+        match '/my_news_item/new', to:  'my_news_items#create', via: [:post]
+        get '/my_news_item/:id' => 'my_news_items#edit', :as => :edit_my_news_item
+        match '/my_news_item/:id', to:  'my_news_items#update', via: %i[put patch]
+        match '/my_news_item/:id', to:  'my_news_items#destroy', via: [:delete]
     end
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
 end
